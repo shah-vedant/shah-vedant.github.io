@@ -24,12 +24,22 @@
 			xxsmall:  [ null,      '360px'  ]
 		});
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
+	// Function to initialize lazy loading
+	function lazyload() {
+		var lazyLoadInstance = new LazyLoad({
+		elements_selector: ".lazyload",
+		// Add additional configuration options if needed
 		});
+	}
+
+	// Play initial animations on page load.
+	$window.on('load', function() {
+		window.setTimeout(function() {
+		$body.removeClass('is-preload');
+		// Initialize lazy loading after removing 'is-preload' class
+		lazyload();
+		}, 100);
+	});
 
 	// Fix: Flexbox min-height bug on IE.
 		if (browser.name == 'ie') {
